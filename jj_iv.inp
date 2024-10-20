@@ -1,0 +1,18 @@
+*JSIM model
+ **HSTP**
+ .model jjmod jj(Rtype=1, Vg=2.8mV, Cap=0.064pF, R0=100ohm, Rn=17ohm, Icrit=0.1mA)
+ **SFIS**
+ *.model jjmodsfis jj(Rtype=1, Vg=2.8mV, Cap=0.180pF, R0=100ohm, Rn=100ohm, Icrit=0.22uA)
+ **OPEN**
+ *.model jjmod jj(Rtype=1, Vg=2.8mV, Cap=0.218pF, R0=200ohm, Rn=17ohm, Icrit=0.1mA)
+ **Low Jc**
+ *.model jjmod jj(Rtype=1, Vg=2.8mV, Cap=0.5pF, R0=600ohm, Rn=17ohm, Icrit=0.1mA)
+ *** top cell: JJ_IV
+ B0                 1         0  jjmod area=1.00
+ RS0                1         0  35ohm
+ Iin                0         1  PWL(0ps 0mA 1000ps 150uA 2000ps 0uA)
+ *** netlist file ***
+ .tran 0.1ps 2000ps 0ps
+ .print devv B0
+ .print devi Iin
+ 
